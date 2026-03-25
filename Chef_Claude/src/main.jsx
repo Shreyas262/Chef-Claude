@@ -1,10 +1,26 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import Header from './Header'
+export default function Main() {
 
-createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <Header />
-  </StrictMode>,
-)
+    const ingredients = [];
+    function handleSubmit(e) {
+        e.preventDefault();
+        const formData = new FormData(e.currentTarget);
+        const newIngredient = formData.get("ingredient");
+        if (newIngredient) {
+            ingredients.push(newIngredient);
+        }
+    }
+
+    return (
+        <main>
+            <form className="add-ingredient-form" action="" onSubmit={handleSubmit}>
+                <input
+                    aria-label="Add Ingredients Input"
+                    type="text"
+                    placeholder="e.g. Spinach"
+                    name="ingredient"
+                />
+                <button>Add Ingredient</button>
+            </form>
+        </main>
+    );
+}
