@@ -18,20 +18,27 @@ export default function Main() {
         setIngredients(prevIngredients => [...prevIngredients, newIngredient])
     }
 
+    const recipeSection = React.createRef(null)
+    React.useEffect(() => {
+        if(recipe !== "" && recipeSection.current !== null) {
+            recipeSection.current.scrollIntoView({ behavior: "smooth" })
+        }
+    }, [recipe])
+
     return (
         <main className="main">
             <form action={addIngredient} className="add-ingredient-form">
                 <input
                     aria-label="Add Ingredients Input"
                     type="text"
-                    placeholder="e.g. Spinach"
+                    placeholder="Add atleast 3-ingredients & 1-ingredient at a time, e.g. Potato "
                     name="ingredient"
                 />
                 <button>Add Ingredient</button>
             </form>
             
             {
-                ingredients.length > 0 && <IngredientsList ingredients={ingredients} getRecipe={getRecipe} />
+                ingredients.length > 0 && <IngredientsList ref={recipeSection} ingredients={ingredients} getRecipe={getRecipe} />
             }
 
             {recipe && <ClaudeRecipe recipe={recipe} />}
