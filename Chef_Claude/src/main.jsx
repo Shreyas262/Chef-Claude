@@ -34,7 +34,7 @@ export default function Main() {
                     placeholder="Add atleast 3-ingredients & 1-ingredient at a time, e.g. Potato "
                     name="ingredient"
                 />
-                <button>Add Ingredient</button>
+                <button className="add-ingredients-btn" id="addIngredientsBtn">Add Ingredient</button>
             </form>
             
             {
